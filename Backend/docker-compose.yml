@@ -1,0 +1,21 @@
+version: "3"
+services:
+  algar-jdbc:
+    image: algar-jdbc
+    ports:
+      - "8080:8080"
+    networks:
+      - algar-mysql
+    depends_on:
+      - mysqldb
+
+  mysqldb:
+    image: mysql:8
+    networks:
+      - algar-mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=bootdb
+
+networks:
+  algar-mysql:
