@@ -18,6 +18,7 @@ import java.util.List;
 public class OfertasDTO implements Serializable {
     private String code;
     private String internalName;
+    private double price;
     private boolean active;
     private Produtos product;
     private String salesStartingAt;

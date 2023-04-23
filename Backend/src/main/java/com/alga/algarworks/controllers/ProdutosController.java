@@ -1,6 +1,7 @@
 package com.alga.algarworks.controllers;
 
-import com.alga.algarworks.Exception.RecursoNaoEncontradoException;
+import com.alga.algarworks.Exception.ErrorObject;
+import com.alga.algarworks.Exception.InvalidDataException;
 import com.alga.algarworks.dtos.ProdutosDTO;
 import com.alga.algarworks.services.ProdutosService;
 import lombok.RequiredArgsConstructor;
@@ -12,6 +13,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
+import java.time.Instant;
+import java.util.List;
 
 @RestController
 @RequestMapping("api/v1/products")
@@ -39,6 +42,15 @@ public class ProdutosController {
 
     @PostMapping
     public ResponseEntity<ProdutosDTO> save(@RequestBody ProdutosDTO dto) {
+        if (dto.getName() == null) {
+            throw new InvalidDataException(
+
+                    "https://algaworks.com/dados-invalidos",
+                    "Dados inválidos"
+
+            );
+        }
+
         dto = produtosService.save(dto);
         URI uri = URI.create("/products/" + dto.getId());
         return ResponseEntity.created(uri).body(dto);
@@ -56,11 +68,13 @@ public class ProdutosController {
         return ResponseEntity.ok("Curso deletado com sucesso!");
     }
 
-    @ExceptionHandler(RecursoNaoEncontradoException.class)
-    public ResponseEntity<String> handleRecursoNaoEncontradoException(RecursoNaoEncontradoException ex) {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+    @ExceptionHandler(InvalidDataException.class)
+    public ResponseEntity<Object> handleInvalidDataException(InvalidDataException ex) {
+        ErrorObject errorResponse = new ErrorObject(
+                ex.getName(),
+                ex.getMessage()
+        );
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
-
-
 }
 

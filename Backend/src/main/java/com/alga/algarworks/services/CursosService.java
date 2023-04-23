@@ -1,6 +1,7 @@
 package com.alga.algarworks.services;
 
-import com.alga.algarworks.Exception.RecursoNaoEncontradoException;
+import com.alga.algarworks.Exception.ErrorObject;
+import com.alga.algarworks.Exception.InvalidDataException;
 import com.alga.algarworks.dtos.CursosDTO;
 import com.alga.algarworks.entities.Cursos;
 import com.alga.algarworks.repositories.CursosRepository;
@@ -11,6 +12,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @Slf4j
@@ -32,7 +35,8 @@ public class CursosService {
     public CursosDTO findById(Long id) {
         log.info("Buscando curso com id: {}", id);
         Cursos entity = cursosRepository.findById(id)
-                .orElseThrow(() -> new RecursoNaoEncontradoException("Curso não encontrado: " + id));
+                .orElseThrow(() -> new InvalidDataException("",""));
+
         return entity.toDTO();
     }
 
@@ -56,7 +60,7 @@ public class CursosService {
     public void delete(Long id) {
         log.info("Deletando curso com id: {}", id);
         var cursos = cursosRepository.findById(id)
-                .orElseThrow(() -> new RecursoNaoEncontradoException("Curso não encontrado: " + id));
+                .orElseThrow(() -> new InvalidDataException("",""));
         cursosRepository.deleteById(cursos.getId());
     }
 }

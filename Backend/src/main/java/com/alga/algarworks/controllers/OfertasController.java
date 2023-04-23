@@ -1,7 +1,7 @@
 package com.alga.algarworks.controllers;
 
-import com.alga.algarworks.Exception.RecursoNaoEncontradoException;
-import com.alga.algarworks.dtos.CursosDTO;
+import com.alga.algarworks.Exception.ErrorObject;
+import com.alga.algarworks.Exception.InvalidDataException;
 import com.alga.algarworks.dtos.OfertasDTO;
 import com.alga.algarworks.services.OfertasService;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +13,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
+import java.time.Instant;
+import java.util.List;
 
 @RestController
 @RequestMapping("api/v1/offers")
@@ -29,17 +31,26 @@ public class OfertasController {
         return ResponseEntity.ok(ofertasService.findAll(pageable, texto, campo));
     }
 
+
     @GetMapping("/{code}")
     public ResponseEntity<OfertasDTO> findById(@PathVariable String code) {
         OfertasDTO ofertasDTO = ofertasService.findById(code);
         if (ofertasDTO == null) {
-            throw new RecursoNaoEncontradoException("Produto não encontrado");
+            throw new InvalidDataException("","");
         }
         return ResponseEntity.ok(ofertasService.findById(code));
     }
 
     @PostMapping
     public ResponseEntity<OfertasDTO> insert(@RequestBody OfertasDTO dto) {
+        if (dto.getCode() == null) {
+            throw new InvalidDataException(
+
+                    "https://algaworks.com/dados-invalidos",
+                    "Dados inválidos"
+
+            );
+        }
         dto = ofertasService.save(dto);
         URI uri = URI.create("/offers/" + dto.getCode());
         return ResponseEntity.created(uri).body(dto);
@@ -57,10 +68,15 @@ public class OfertasController {
         return ResponseEntity.ok("Curso deletado com sucesso!");
     }
 
-    @ExceptionHandler(RecursoNaoEncontradoException.class)
-    public ResponseEntity<String> handleRecursoNaoEncontradoException(RecursoNaoEncontradoException ex) {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+    @ExceptionHandler(InvalidDataException.class)
+    public ResponseEntity<Object> handleInvalidDataException(InvalidDataException ex) {
+        ErrorObject errorResponse = new ErrorObject(
+                ex.getName(),
+                ex.getMessage()
+        );
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
+
 
 }
 

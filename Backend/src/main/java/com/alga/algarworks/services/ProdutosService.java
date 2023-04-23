@@ -1,6 +1,7 @@
 package com.alga.algarworks.services;
 
-import com.alga.algarworks.Exception.RecursoNaoEncontradoException;
+import com.alga.algarworks.Exception.ErrorObject;
+import com.alga.algarworks.Exception.InvalidDataException;
 import com.alga.algarworks.dtos.ProdutosDTO;
 import com.alga.algarworks.entities.Produtos;
 import com.alga.algarworks.repositories.ProdutosRepository;
@@ -11,6 +12,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @Slf4j
@@ -32,7 +35,7 @@ public class ProdutosService {
     public ProdutosDTO findById(Long id) {
         log.info("Buscando produto com id: {}", id);
         Produtos entity = produtosRepository.findById(id)
-                .orElseThrow(() -> new RecursoNaoEncontradoException("Produto não encontrado: " + id));
+                .orElseThrow(() -> new InvalidDataException("",""));
         return entity.toDTO();
     }
 
@@ -56,7 +59,7 @@ public class ProdutosService {
     public void delete(Long id) {
         log.info("Deletando produto com id: {}", id);
         var produtos = produtosRepository.findById(id)
-                .orElseThrow(() -> new RecursoNaoEncontradoException("Produto não encontrado: " + id));
+                .orElseThrow(() -> new InvalidDataException("",""));
         produtosRepository.deleteById(produtos.getId());
     }
 }

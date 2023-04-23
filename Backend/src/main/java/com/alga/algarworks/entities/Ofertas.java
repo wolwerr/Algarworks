@@ -25,7 +25,9 @@ public class Ofertas  {
     @NonNull
     @Column(nullable = false)
     private String internalName;
-
+    @NonNull
+    @Column(nullable = false)
+    private double price;
     @NonNull
     @Column(nullable = false)
     private boolean active;
@@ -40,7 +42,7 @@ public class Ofertas  {
     @Column(nullable = false)
     private String salesEndingAt;
     @OneToMany
-    @Cascade(org.hibernate.annotations.CascadeType.REFRESH)
+    @Cascade(CascadeType.REFRESH)
     private List<Cursos> deliverables;
     @NonNull
     @Column(nullable = false)

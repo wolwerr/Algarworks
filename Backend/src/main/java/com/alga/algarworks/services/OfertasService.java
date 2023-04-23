@@ -1,6 +1,7 @@
 package com.alga.algarworks.services;
 
-import com.alga.algarworks.Exception.RecursoNaoEncontradoException;
+import com.alga.algarworks.Exception.ErrorObject;
+import com.alga.algarworks.Exception.InvalidDataException;
 import com.alga.algarworks.dtos.OfertasDTO;
 import com.alga.algarworks.entities.Ofertas;
 import com.alga.algarworks.repositories.OfertasRepository;
@@ -11,6 +12,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 
 @Service
@@ -35,7 +38,7 @@ public class OfertasService {
     public OfertasDTO findById(String code) {
         log.info("Buscando oferta por ID: {}", code);
         Ofertas ofertas = ofertasRepository.findById(code)
-                .orElseThrow(() -> new RecursoNaoEncontradoException("Oferta não encontrada id: " + code));
+                .orElseThrow(() -> new InvalidDataException("",""));
         return ofertas.toDTO();
     }
 
@@ -63,7 +66,7 @@ public class OfertasService {
     public void delete(String code) {
         log.info("Deletando oferta: {}", code);
         var ofertas = ofertasRepository.findById(code)
-                .orElseThrow(() -> new RecursoNaoEncontradoException("Oferta não encontrada id: " + code));
+                .orElseThrow(() -> new InvalidDataException("",""));
         ofertasRepository.deleteById(ofertas.getCode());
     }
 }
