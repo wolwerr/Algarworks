@@ -47,10 +47,7 @@ public class Ofertas  {
     @OneToMany
     @Cascade(CascadeType.REFRESH)
     private List<Deliverables> deliverables;
-    @NonNull
-    @Column(nullable = false)
-    @NotBlank(message = "A duração de dias é obrigatório")
-    private String supportDurationInDays;
+
 
 
     public OfertasDTO toDTO() {

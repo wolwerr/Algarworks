@@ -23,7 +23,7 @@ public class OfertasDTO implements Serializable {
     private String salesStartingAt;
     private String salesEndingAt;
     private List<Deliverables> deliverables;
-    private String supportDurationInDays;
+
 
     public Ofertas toEntity() {
         var ofertas = new Ofertas();

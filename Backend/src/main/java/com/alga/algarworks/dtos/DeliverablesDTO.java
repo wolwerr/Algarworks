@@ -15,6 +15,7 @@ public class DeliverablesDTO implements Serializable {
 
     private Long id;
     private List<Cursos> course;
+    private String supportDurationInDays;
 
     public Deliverables toEntity() {
         var deliverables = new Deliverables();

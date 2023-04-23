@@ -27,7 +27,7 @@ public class OfertasService {
             case "code" -> ofertasRepository.findByCodeContainingIgnoreCase(texto, pageable).map(Ofertas::toDTO);
             case "internalName" -> ofertasRepository.findByInternalNameContainingIgnoreCase(texto, pageable).map(Ofertas::toDTO);
             case "active" -> ofertasRepository.findByActiveContainingIgnoreCase(Boolean.parseBoolean(texto), pageable).map(Ofertas::toDTO);
-            case "supportDurationInDays" -> ofertasRepository.findBySupportDurationInDaysContainingIgnoreCase(texto, pageable).map(Ofertas::toDTO);
+
             default -> ofertasRepository.findAll(pageable).map(Ofertas::toDTO);
         };
     }

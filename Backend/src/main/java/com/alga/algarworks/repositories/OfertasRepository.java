@@ -14,7 +14,6 @@ public interface OfertasRepository extends JpaRepository<Ofertas, String> {
 
     Page<Ofertas> findByActiveContainingIgnoreCase(boolean active, Pageable pageable);
 
-    Page<Ofertas> findBySupportDurationInDaysContainingIgnoreCase(String supportDurationInDays, Pageable pageable);
 
 
 }
