@@ -1,6 +1,6 @@
 package com.alga.algarworks.services;
 
-import com.alga.algarworks.Exception.ErrorObject;
+
 import com.alga.algarworks.Exception.InvalidDataException;
 import com.alga.algarworks.dtos.CursosDTO;
 import com.alga.algarworks.entities.Cursos;
@@ -13,7 +13,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 
 @Service
 @Slf4j

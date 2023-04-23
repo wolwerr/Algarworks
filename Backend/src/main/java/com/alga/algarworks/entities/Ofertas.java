@@ -33,7 +33,6 @@ public class Ofertas  {
     @NonNull
     @Column(nullable = false)
     private boolean active;
-
     @OneToOne
     @Cascade(CascadeType.REFRESH)
     private Produtos product;
@@ -47,7 +46,7 @@ public class Ofertas  {
     private String salesEndingAt;
     @OneToMany
     @Cascade(CascadeType.REFRESH)
-    private List<Cursos> deliverables;
+    private List<Deliverables> deliverables;
     @NonNull
     @Column(nullable = false)
     @NotBlank(message = "A duração de dias é obrigatório")

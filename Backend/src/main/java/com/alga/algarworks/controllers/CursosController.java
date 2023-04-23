@@ -12,8 +12,7 @@ import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
-import java.time.Instant;
-import java.util.List;
+
 
 @RestController
 @RequestMapping("api/v1/courses")
@@ -62,14 +61,14 @@ public class CursosController {
     }
 
 
-    @ExceptionHandler(InvalidDataException.class)
-    public ResponseEntity<Object> handleInvalidDataException(InvalidDataException ex) {
-        ErrorObject errorResponse = new ErrorObject(
-                ex.getName(),
-                ex.getUserMessage()
-            );
-            return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
-        }
+        @ExceptionHandler(InvalidDataException.class)
+        public ResponseEntity<Object> handleInvalidDataException(InvalidDataException ex) {
+            ErrorObject errorResponse = new ErrorObject(
+                    ex.getName(),
+                    ex.getUserMessage()
+                );
+                return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+            }
     }
 
 

@@ -1,6 +1,5 @@
 package com.alga.algarworks.entities;
 
-
 import com.alga.algarworks.dtos.ProdutosDTO;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;

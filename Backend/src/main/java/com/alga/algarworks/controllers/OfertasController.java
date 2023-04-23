@@ -13,8 +13,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
-import java.time.Instant;
-import java.util.List;
 
 @RestController
 @RequestMapping("api/v1/offers")
