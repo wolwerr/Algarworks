@@ -15,8 +15,6 @@ public class InvalidDataException extends RuntimeException {
         this.name = "amount";
         this.userMessage = "O valor é obrigatório";
     }
-
-
 }
 
 

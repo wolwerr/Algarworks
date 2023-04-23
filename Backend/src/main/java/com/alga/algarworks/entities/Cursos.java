@@ -3,6 +3,7 @@ package com.alga.algarworks.entities;
 
 import com.alga.algarworks.dtos.CursosDTO;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 import org.springframework.beans.BeanUtils;
 
@@ -13,7 +14,6 @@ import java.io.Serializable;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Cursos implements Serializable {
 
     @Id
@@ -22,6 +22,7 @@ public class Cursos implements Serializable {
     private Long id;
     @NonNull
     @Column(nullable = false, length = 64)
+    @NotBlank(message = "O nome é obrigatório")
     private String name;
 
     public CursosDTO toDTO() {

@@ -2,6 +2,7 @@ package com.alga.algarworks.entities;
 
 import com.alga.algarworks.dtos.OfertasDTO;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
@@ -15,15 +16,16 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Ofertas  {
 
     @Id
     @EqualsAndHashCode.Include
     @Column(nullable = false)
+    @NotBlank(message = "O code é obrigatório")
     private String code;
     @NonNull
     @Column(nullable = false)
+    @NotBlank(message = "O internalName é obrigatório")
     private String internalName;
     @NonNull
     @Column(nullable = false)
@@ -37,15 +39,18 @@ public class Ofertas  {
     private Produtos product;
     @NonNull
     @Column(nullable = false)
+    @NotBlank(message = "A data é obrigatória")
     private String salesStartingAt;
     @NonNull
     @Column(nullable = false)
+    @NotBlank(message = "A data é obrigatória")
     private String salesEndingAt;
     @OneToMany
     @Cascade(CascadeType.REFRESH)
     private List<Cursos> deliverables;
     @NonNull
     @Column(nullable = false)
+    @NotBlank(message = "A duração de dias é obrigatório")
     private String supportDurationInDays;
 
 

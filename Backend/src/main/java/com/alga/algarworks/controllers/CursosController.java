@@ -40,8 +40,8 @@ public class CursosController {
     public ResponseEntity<CursosDTO> save(@RequestBody CursosDTO dto) {
         if (dto.getName() == null) {
             throw new InvalidDataException(
-                    "https://algaworks.com/dados-invalidos",
-                    "Dados inválidos"
+                    "amount",
+                    "O valor é obrigatório"
             );
         }
         dto = cursosService.save(dto);

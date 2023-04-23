@@ -4,6 +4,7 @@ import com.alga.algarworks.Exception.ErrorObject;
 import com.alga.algarworks.Exception.InvalidDataException;
 import com.alga.algarworks.dtos.ProdutosDTO;
 import com.alga.algarworks.services.ProdutosService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -13,8 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
-import java.time.Instant;
-import java.util.List;
+
 
 @RestController
 @RequestMapping("api/v1/products")
@@ -41,16 +41,13 @@ public class ProdutosController {
     }
 
     @PostMapping
-    public ResponseEntity<ProdutosDTO> save(@RequestBody ProdutosDTO dto) {
-        if (dto.getName() == null) {
+    public ResponseEntity<ProdutosDTO> save(@Valid @RequestBody ProdutosDTO dto) {
+        if (dto.getName() == null || dto.getStatus() == null ) {
             throw new InvalidDataException(
-
-                    "https://algaworks.com/dados-invalidos",
-                    "Dados inválidos"
-
+                    "amount",
+                    "O valor é obrigatório"
             );
         }
-
         dto = produtosService.save(dto);
         URI uri = URI.create("/products/" + dto.getId());
         return ResponseEntity.created(uri).body(dto);

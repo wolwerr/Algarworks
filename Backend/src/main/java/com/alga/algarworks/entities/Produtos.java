@@ -3,6 +3,7 @@ package com.alga.algarworks.entities;
 
 import com.alga.algarworks.dtos.ProdutosDTO;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 import org.springframework.beans.BeanUtils;
 
@@ -21,6 +22,7 @@ public class Produtos implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NonNull
+    @NotBlank(message = "O nome é obrigatório")
     @Column(nullable = false)
     private String name;
     @NonNull

@@ -25,7 +25,7 @@ public class ErrorObject {
         this.type = "https://algaworks.com/dados-invalidos";
         this.title = "Dados inválidos";
         this.detail = "Um ou mais campos estão inválidos. Faça o preenchimento correto e tente novamente.";
-        this.objects = objects;
+        this.objects = List.of(new InvalidDataException(name, userMessage));
 
     }
 

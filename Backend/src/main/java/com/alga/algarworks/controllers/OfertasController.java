@@ -43,12 +43,17 @@ public class OfertasController {
 
     @PostMapping
     public ResponseEntity<OfertasDTO> insert(@RequestBody OfertasDTO dto) {
-        if (dto.getCode() == null) {
+        if (dto.getCode() == null ||
+                dto.getInternalName() == null ||
+                dto.getSalesStartingAt() == null ||
+                dto.getSalesEndingAt() == null ||
+                dto.getProduct() == null ||
+                dto.getDeliverables() == null ||
+                dto.getSupportDurationInDays() == null
+        ) {
             throw new InvalidDataException(
-
-                    "https://algaworks.com/dados-invalidos",
-                    "Dados inválidos"
-
+                    "amount",
+                    "O valor é obrigatório"
             );
         }
         dto = ofertasService.save(dto);
@@ -72,7 +77,7 @@ public class OfertasController {
     public ResponseEntity<Object> handleInvalidDataException(InvalidDataException ex) {
         ErrorObject errorResponse = new ErrorObject(
                 ex.getName(),
-                ex.getMessage()
+                ex.getUserMessage()
         );
         return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
