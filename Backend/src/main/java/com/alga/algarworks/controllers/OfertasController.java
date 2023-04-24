@@ -46,7 +46,8 @@ public class OfertasController {
                 dto.getSalesStartingAt() == null ||
                 dto.getSalesEndingAt() == null ||
                 dto.getProduct() == null ||
-                dto.getDeliverables() == null
+                dto.getDeliverables() == null ||
+                dto.getSupportDurationInDays() == null
         ) {
             throw new InvalidDataException(
                     "amount",

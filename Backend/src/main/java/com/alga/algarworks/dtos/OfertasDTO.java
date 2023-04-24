@@ -1,6 +1,6 @@
 package com.alga.algarworks.dtos;
 
-import com.alga.algarworks.entities.Deliverables;
+import com.alga.algarworks.entities.Cursos;
 import com.alga.algarworks.entities.Ofertas;
 import com.alga.algarworks.entities.Produtos;
 import lombok.AllArgsConstructor;
@@ -22,7 +22,8 @@ public class OfertasDTO implements Serializable {
     private Produtos product;
     private String salesStartingAt;
     private String salesEndingAt;
-    private List<Deliverables> deliverables;
+    private List<Cursos> deliverables;
+    private String supportDurationInDays;
 
 
     public Ofertas toEntity() {

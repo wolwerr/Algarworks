@@ -39,16 +39,20 @@ public class Ofertas  {
     @NonNull
     @Column(nullable = false)
     @NotBlank(message = "A data é obrigatória")
+    @Temporal(TemporalType.TIMESTAMP)
     private String salesStartingAt;
     @NonNull
     @Column(nullable = false)
     @NotBlank(message = "A data é obrigatória")
+    @Temporal(TemporalType.TIMESTAMP)
     private String salesEndingAt;
     @OneToMany
     @Cascade(CascadeType.REFRESH)
-    private List<Deliverables> deliverables;
-
-
+    private List<Cursos> deliverables;
+    @NonNull
+    @Column(nullable = false)
+    @NotBlank(message = "A duração de dias é obrigatório")
+    private String supportDurationInDays;
 
     public OfertasDTO toDTO() {
         var ofertasDTO = new OfertasDTO();
