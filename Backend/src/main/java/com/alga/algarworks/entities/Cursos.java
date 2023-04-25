@@ -14,7 +14,7 @@ import java.io.Serializable;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Cursos implements Serializable {
+public class proCursos implements Serializable {
 
     @Id
     @EqualsAndHashCode.Include
