@@ -73,5 +73,10 @@ public class ProdutosController {
         );
         return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
+
+    @GetMapping("/name/{name}")
+    public ResponseEntity<Page<ProdutosDTO>> findByName(@PathVariable String name, Pageable pageable) {
+        return ResponseEntity.ok(this.produtosService.findByName(name, pageable));
+    }
 }
 

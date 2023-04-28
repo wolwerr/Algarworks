@@ -60,4 +60,8 @@ public class ProdutosService {
                 .orElseThrow(() -> new InvalidDataException("",""));
         produtosRepository.deleteById(produtos.getId());
     }
+
+    public Page<ProdutosDTO> findByName(String name, Pageable pageable) {
+        return this.produtosRepository.findAllByNameContainsIgnoreCase(name, pageable).map(ProdutosDTO::new);
+    }
 }

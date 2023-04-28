@@ -25,7 +25,7 @@ public class CursosService {
     public Page<CursosDTO> findAll(Pageable pageable, String texto, String campo) {
         return switch (campo) {
             case "id" -> cursosRepository.findByIdContainingIgnoreCase(texto, pageable).map(Cursos::toDTO);
-            case "name" -> cursosRepository.findByNameContainingIgnoreCase(texto, pageable).map(Cursos::toDTO);
+            case "nome" -> cursosRepository.findByNameContainingIgnoreCase(texto, pageable).map(Cursos::toDTO);
             default -> cursosRepository.findAll(pageable).map(Cursos::toDTO);
         };
     }
@@ -61,5 +61,9 @@ public class CursosService {
         var cursos = cursosRepository.findById(id)
                 .orElseThrow(() -> new InvalidDataException("",""));
         cursosRepository.deleteById(cursos.getId());
+    }
+
+    public Page<CursosDTO> findByName(String name, Pageable pageable) {
+        return this.cursosRepository.findAllByNameContainsIgnoreCase(name, pageable).map(CursosDTO::new);
     }
 }

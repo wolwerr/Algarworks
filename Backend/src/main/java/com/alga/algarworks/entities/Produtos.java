@@ -13,7 +13,6 @@ import java.io.Serializable;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Produtos implements Serializable {
 
     @Id
@@ -27,8 +26,6 @@ public class Produtos implements Serializable {
     @NonNull
     @Column(nullable = false)
     private ProductStatus status;
-
-
 
     public enum ProductStatus {
         UNPUBLISHED,

@@ -69,6 +69,11 @@ public class CursosController {
                 );
                 return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
             }
+    @GetMapping("/name/{name}")
+    public ResponseEntity<Page<CursosDTO>> findByName(@PathVariable String name, Pageable pageable) {
+        return ResponseEntity.ok(this.cursosService.findByName(name, pageable));
     }
+
+}
 
 

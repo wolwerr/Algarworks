@@ -21,7 +21,9 @@ public class CursosDTO implements Serializable {
         return cursos;
     }
 
-
+    public CursosDTO(Cursos cursos) {
+        BeanUtils.copyProperties(cursos, this);
+    }
 
 }
 

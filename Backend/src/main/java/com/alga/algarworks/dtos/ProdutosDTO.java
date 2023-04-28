@@ -22,4 +22,8 @@ public class ProdutosDTO implements Serializable {
         return produtos;
     }
 
+    public ProdutosDTO(Produtos produtos) {
+        BeanUtils.copyProperties(produtos, this);
+    }
+
 }
