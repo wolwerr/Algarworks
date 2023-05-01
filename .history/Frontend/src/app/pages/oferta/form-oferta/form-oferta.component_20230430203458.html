@@ -1,0 +1,73 @@
+<div class="container" novalidate>
+
+  <h2 class="title">Nova Oferta</h2>
+<form action="submit" class="p-5">
+
+  <mat-form-field class="w-100">
+    <mat-label>Código:</mat-label>
+    <input matInput type="text" [(ngModel)]="code" [ngModelOptions]="{standalone: true}" required>    
+  </mat-form-field>
+
+  <mat-form-field class="w-100">
+    <mat-label>Nome Interno:</mat-label>
+    <input matInput type="text" [(ngModel)]="internalName" [ngModelOptions]="{standalone: true}" required>
+  </mat-form-field>
+
+  <mat-form-field class="w-100">
+    <mat-label>Ativo:</mat-label>
+    <mat-select [(value)]="activeSelected" [required]="true">
+      <mat-option [value]="true">Sim</mat-option>
+      <mat-option [value]="false">Não</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="w-100">
+    <mat-label>Preço:</mat-label>
+    <input matInput type="string" [(ngModel)]="price" [ngModelOptions]="{standalone: true}" [required]="true">    
+  </mat-form-field>
+
+  <mat-form-field class="w-100">
+    <mat-label>A partir de:</mat-label>
+    <input matInput type="text" [(ngModel)]="salesStartingAt" [ngModelOptions]="{standalone: true}" required mask="00/00/0000">
+  </mat-form-field>
+
+  <mat-form-field class="w-100">
+    <mat-label>Até:</mat-label>
+    <input matInput type="text" [(ngModel)]="salesEndingAt" [ngModelOptions]="{standalone: true}" required mask="00/00/0000">
+  </mat-form-field>
+
+  <mat-form-field class="w-100">
+    <mat-label>Dias de suporte:</mat-label>
+    <input matInput type="text" [(ngModel)]="supportDurationInDays" [ngModelOptions]="{standalone: true}" required>
+  </mat-form-field>
+
+  <div *ngIf="produtoSelected" class="d-flex" required>
+    <p class="pe-1"> Produto Selecionado: </p>
+    <p class="orodutoName" (click)="removeProduto()">{{ produtoSelected.name }}</p>
+  </div>
+  <search-bar *ngIf="!produtoSelected" [model]="modelProduct" (onSelect)="produtoChanged($event)" [required]="true" require="true"></search-bar>
+
+  <search-bar [model]="modelCourse" (onSelect)="cursoChanged($event)" require="true" ></search-bar>
+
+
+
+  <mat-table #table [dataSource]="dataSource">
+
+    <ng-container matColumnDef="Nome">
+      <mat-header-cell *matHeaderCellDef required> Nome </mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.name}}</mat-cell>
+    </ng-container>
+
+
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row (click)="removeItem(row)" class="table-row" *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+  <div>
+
+  <button class="me-1" mat-raised-button color="primary" type="submit" (click)="submit()" class="button" >{{isEdit ? 'Atualizar' : 'Cadastrar'}} </button>
+  <button *ngIf="isEdit" class="me-1" mat-raised-button color="warn" class="button" type="submit" (click)="delete()">Apagar</button>
+  <button class="me-1" mat-raised-button color="accent" class="button" type="submit" (click)="voltar()">Voltar</button>
+</div>
+</form>
+</div>

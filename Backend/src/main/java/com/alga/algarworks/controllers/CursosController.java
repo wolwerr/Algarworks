@@ -31,7 +31,6 @@ public class CursosController {
 
     @GetMapping("/{id}")
     public ResponseEntity<CursosDTO> findById(@PathVariable Long id) {
-        CursosDTO cursosDTO = cursosService.findById(id);
         return ResponseEntity.ok(cursosService.findById(id));
     }
 
@@ -56,8 +55,8 @@ public class CursosController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> delete(@PathVariable Long id) {
-        cursosService.delete(id);
-        return ResponseEntity.ok("Curso deletado com sucesso!");
+        this.cursosService.delete(id);
+        return ResponseEntity.noContent().build();
     }
 
 

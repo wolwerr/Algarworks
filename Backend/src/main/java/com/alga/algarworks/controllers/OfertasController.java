@@ -67,8 +67,8 @@ public class OfertasController {
 
     @DeleteMapping("/{code}")
     public ResponseEntity<String> delete(@PathVariable String code) {
-        ofertasService.delete(code);
-        return ResponseEntity.ok("Curso deletado com sucesso!");
+        this.ofertasService.delete(code);
+        return ResponseEntity.noContent().build();
     }
 
     @ExceptionHandler(InvalidDataException.class)

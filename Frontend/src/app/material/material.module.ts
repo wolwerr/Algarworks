@@ -1,7 +1,9 @@
 import {A11yModule} from '@angular/cdk/a11y';
 import {CdkAccordionModule} from '@angular/cdk/accordion';
 import {ClipboardModule} from '@angular/cdk/clipboard';
+import {DialogModule} from '@angular/cdk/dialog';
 import {DragDropModule} from '@angular/cdk/drag-drop';
+import {CdkMenuModule} from '@angular/cdk/menu';
 import {OverlayModule} from '@angular/cdk/overlay';
 import {PortalModule} from '@angular/cdk/portal';
 import {ScrollingModule} from '@angular/cdk/scrolling';
@@ -50,6 +52,7 @@ import {MatTreeModule} from '@angular/material/tree';
     A11yModule,
     CdkAccordionModule,
     ClipboardModule,
+    CdkMenuModule,
     CdkStepperModule,
     CdkTableModule,
     CdkTreeModule,
@@ -93,6 +96,7 @@ import {MatTreeModule} from '@angular/material/tree';
     OverlayModule,
     PortalModule,
     ScrollingModule,
+    DialogModule,
   ]
 })
 export class MaterialNgModule {}

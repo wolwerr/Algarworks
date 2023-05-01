@@ -1,0 +1,25 @@
+<mat-toolbar color="primary">
+  <button mat-icon-button>
+    <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
+  </button>
+</mat-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav #sidenav>
+    <mat-nav-list (click)="sidenav.toggle()">
+      <a mat-list-item [routerLink]="'/main'"> Home </a>
+      <a  mat-list-item [routerLink]="'/main/cadastrocurso'"> Cadastrar Cursos </a>
+      <a  mat-list-item [routerLink]="'/main/cadastroproduto'"> Cadastrar Produtos </a>
+      <a  mat-list-item [routerLink]="'/main/cadastrooferta'"> Cadastrar Oferta</a>
+      <a  mat-list-item [routerLink]="'/main/curso'"> Cursos Cadastrados </a>
+      <a  mat-list-item [routerLink]="'/main/produto'"> Produtos Cadastrados </a>
+      <a mat-list-item [routerLink]="'/main/oferta'"> Ofertas Cadastradas </a>
+      <a mat-list-item>Fechar</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

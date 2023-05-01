@@ -29,7 +29,7 @@ public class Produtos implements Serializable {
 
     public enum ProductStatus {
         UNPUBLISHED,
-        PUBLISHED;
+        PUBLISHED
     }
 
     public ProdutosDTO toDTO() {
